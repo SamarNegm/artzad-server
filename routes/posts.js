@@ -1,10 +1,12 @@
 import express from 'express';
-import { getAllPosts, createPost }
-    from '../controllers/posts.js';
-const postsRoute = express.Router();
-postsRoute.get('/getAllPosts', getAllPosts);
-postsRoute.post('/createPost', createPost);
-postsRoute.use('/*', (req, res) => { res.status(404).json({ message: 'wrong route' }) });
+
+import { getPosts, createPost } from '../controllers/posts.js';
+
+const router = express.Router();
+
+router.get('/', getPosts);
+router.post('/', createPost);
 
 
-export default postsRoute;
+
+export default router;

@@ -1,7 +1,7 @@
 import { catchAsync } from '../utils/utils.js';
 import Post from '../models/Post.js';
 
-export const getAllPosts = catchAsync(async (req, res) => {
+export const getPosts = catchAsync(async (req, res) => {
     let query = JSON.stringify(req.query);
     query = query.replace(/(gt|gte|lt|lte)/, (match) => `$${match}`);
     let posts = Post.find(JSON.parse(query));
