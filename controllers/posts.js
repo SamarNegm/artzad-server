@@ -46,3 +46,13 @@ export const likePost = catchAsync(async (req, res) => {
 
     res.json(updatedPost);
 });
+
+export const updatePost = catchAsync(async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+
+    const updatedPost = await Post.findByIdAndUpdate(id, req.body, { new: true });
+
+    res.json(updatedPost);
+});
